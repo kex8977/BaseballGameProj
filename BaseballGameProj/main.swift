@@ -7,5 +7,7 @@
 
 import Foundation
 
-print("Hello, World!")
+let game1 = BaseballGame()
 
+game1.start()
+print(game1.GameAnswer)
