@@ -11,7 +11,7 @@ class BaseballGame {
    
    var GameAnswer: String = ""
    var UserAnswer: String = ""
-   let randomNumberList = ["1","2","3","4","5","6","7","8","9"]
+   let randomNumberList = ["0","1","2","3","4","5","6","7","8","9"]
    
    func makeAnswer() {
       while true {
@@ -28,6 +28,10 @@ class BaseballGame {
          } while GameAnswer.contains(n)
          
          GameAnswer.append(n)
+         
+         if GameAnswer[GameAnswer.startIndex] == "0" { // level 3 구현 , 맨 앞자리에 0은 저장 불가
+            continue
+         }
       }
    }
    
@@ -46,10 +50,10 @@ class BaseballGame {
             print("error! 3자리 숫자를 입력하세요!!")
             continue
          }
-         if UA1 == "0" || UA2 == "0" || UA3 == "0" {
-            print("error! 0이 사용되어 올바르지 않은 입력값!!")
-            continue
-         }
+//         if UA1 == "0" || UA2 == "0" || UA3 == "0" {
+//            print("error! 0이 사용되어 올바르지 않은 입력값!!")
+//            continue
+//         }
          
          if (UA1 == UA2 || UA1 == UA3) {
             print("\(UA1) 가 두번 사용되어 올바르지 않은 입력값!!")
