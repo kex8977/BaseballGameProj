@@ -11,7 +11,9 @@ class BaseballGame {
    
    var GameAnswer: String = ""
    var UserAnswer: String = ""
-   let randomNumberList = ["0","1","2","3","4","5","6","7","8","9"]
+   var randomNumberList = ["0","1","2","3","4","5","6","7","8","9"]
+   var gameTryCount: [Int] = []
+   var thisGameTryCount = 0
    
    func makeAnswer() {
       while true {
@@ -35,7 +37,7 @@ class BaseballGame {
       }
    }
    
-   func inputNumber() {
+   func inputNumber() -> Int {
       
       while true {
          print("3자리 숫자를 입력하세요.")
@@ -45,6 +47,8 @@ class BaseballGame {
          let UA2 = input[input.index(after: input.startIndex)]
          let UA3 = input[input.index(before: input.endIndex)]
          // UA UserAnswer 가 character형인데 Int나 String으로 변환할 수 없는가?
+         
+         thisGameTryCount += 1// 게임 시도 횟수 1증가
          
          if input.count != 3 {
             print("error! 3자리 숫자를 입력하세요!!")
@@ -73,7 +77,8 @@ class BaseballGame {
             printResult(S: S, B: B)
             if S == 3 {
                print("정답입니다.")
-               break
+               randomNumberList.shuffle() // 정답을 맞춘 후 배열 목록 셔플 ... 이게 맞나?
+               return thisGameTryCount
             }
          }
          else{
@@ -115,14 +120,48 @@ class BaseballGame {
    }
    
    func start() {
-      makeAnswer()
-      
-//      let GA1 = GameAnswer[GameAnswer.startIndex]
-//      let GA2 = GameAnswer[GameAnswer.index(after: GameAnswer.startIndex)]
-//      let GA3 = GameAnswer[GameAnswer.index(before: GameAnswer.endIndex)]
-      
-      print("숫자 야구 게임을 시작합니다.")
-      inputNumber()
+     
+      while true {
+         print("\n환영합니다! 원하시는 번호를 입력하세요.")
+         print("1. 게임 시작하기   2. 게임 기록 보기   3. 종료하기")
+         let input = readLine()!
+         
+         if input == "1" {
+            
+            print("\n<숫자 야구 게임을 시작합니다.>")
+            makeAnswer()
+
+      //      let GA1 = GameAnswer[GameAnswer.startIndex]
+      //      let GA2 = GameAnswer[GameAnswer.index(after: GameAnswer.startIndex)]
+      //      let GA3 = GameAnswer[GameAnswer.index(before: GameAnswer.endIndex)]
+            
+            thisGameTryCount = 0
+            gameTryCount.append(inputNumber())
+         }
+         else if input == "2" {
+            
+            var n = 1
+            print("\n<게임 기록 보기>\n")
+            
+            if gameTryCount.isEmpty {
+               print("게임 기록이 없습니다.\n")
+            }
+            else{
+               for i in gameTryCount {
+                  print("\(n)번 째 게임 : 시도 횟수 - \(i)")
+                  n = n+1
+               }
+            }
+         }
+         else if input == "3" {
+            print("게임 종료")
+            break
+         }
+         else {
+            print("잘못된 입력 입니다. 다시 입력하세요")
+         }
+
+      }
    }
 }
 
