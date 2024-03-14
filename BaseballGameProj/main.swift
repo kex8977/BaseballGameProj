@@ -10,4 +10,3 @@ import Foundation
 let game1 = BaseballGame()
 
 game1.start()
-print(game1.GameAnswer)
