@@ -7,8 +7,6 @@
 
 import Foundation
 
-let game1 = BaseballGame()
-
 while true {
    
    print("\n환영합니다! 원하시는 번호를 입력하세요.")
@@ -20,5 +18,6 @@ while true {
       break
    }
    
+   let game1 = BaseballGame()
    game1.start(userChoice: Int(input)!)
 }

@@ -9,8 +9,8 @@ import Foundation
 
 class BaseballGame {
    
-   var GameAnswer: String = ""
-   var UserAnswer: String = ""
+   var gameAnswer: String = ""
+   var userAnswer: String = ""
    var randomNumberList = ["0","1","2","3","4","5","6","7","8","9"]
    var gameTryCount: [Int] = []
    var thisGameTryCount = 0
@@ -18,7 +18,7 @@ class BaseballGame {
    func makeAnswer() {
       while true {
          
-         if GameAnswer.count == 3 {
+         if gameAnswer.count == 3 {
             break
          }
          
@@ -27,11 +27,11 @@ class BaseballGame {
          repeat {
             n = randomNumberList.randomElement()!
             // print(n, GameAnswer)
-         } while GameAnswer.contains(n)
+         } while gameAnswer.contains(n)
          
-         GameAnswer.append(n)
+         gameAnswer.append(n)
          
-         if GameAnswer[GameAnswer.startIndex] == "0" { // level 3 구현 , 맨 앞자리에 0은 저장 불가
+         if gameAnswer[gameAnswer.startIndex] == "0" { // level 3 구현 , 맨 앞자리에 0은 저장 불가
             continue
          }
       }
@@ -91,9 +91,9 @@ class BaseballGame {
       
       var strike : Int = 0
       
-      if n1 == GameAnswer[GameAnswer.startIndex] { strike += 1 }
-      if n2 == GameAnswer[GameAnswer.index(after: GameAnswer.startIndex)] { strike += 1 }
-      if n3 == GameAnswer[GameAnswer.index(before: GameAnswer.endIndex)] { strike += 1 }
+      if n1 == gameAnswer[gameAnswer.startIndex] { strike += 1 }
+      if n2 == gameAnswer[gameAnswer.index(after: gameAnswer.startIndex)] { strike += 1 }
+      if n3 == gameAnswer[gameAnswer.index(before: gameAnswer.endIndex)] { strike += 1 }
       
       return strike
    }
@@ -102,9 +102,9 @@ class BaseballGame {
       
       var ball : Int = 0
       
-      if n1 == GameAnswer[GameAnswer.index(after: GameAnswer.startIndex)] || n1 == GameAnswer[GameAnswer.index(before: GameAnswer.endIndex)] { ball += 1}
-      if n2 == GameAnswer[GameAnswer.startIndex] || n2 == GameAnswer[GameAnswer.index(before: GameAnswer.endIndex)] { ball += 1}
-      if n3 == GameAnswer[GameAnswer.startIndex] || n3 == GameAnswer[GameAnswer.index(after: GameAnswer.startIndex)] { ball += 1}
+      if n1 == gameAnswer[gameAnswer.index(after: gameAnswer.startIndex)] || n1 == gameAnswer[gameAnswer.index(before: gameAnswer.endIndex)] { ball += 1}
+      if n2 == gameAnswer[gameAnswer.startIndex] || n2 == gameAnswer[gameAnswer.index(before: gameAnswer.endIndex)] { ball += 1}
+      if n3 == gameAnswer[gameAnswer.startIndex] || n3 == gameAnswer[gameAnswer.index(after: gameAnswer.startIndex)] { ball += 1}
       
       // swift의 문자열 처리 방식 ㅠㅠ
       return ball
